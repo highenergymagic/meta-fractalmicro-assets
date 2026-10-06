@@ -8,7 +8,7 @@ No media binaries are stored in Git.
 ## KDE 3 system sounds
 
 The recipe selects KDE_Startup_1.ogg and KDE_Logout_1.ogg from the checksum-pinned
-official kdebase 3.5.10 source archive. Both match the owner's supplied hashes.
+official kdebase 3.5.10 source archive. Each selected file has its own SHA256 check in the recipe.
 It uses the archive's GPLv2 COPYING as the package-level licensing basis
 (GPL-2.0-only, without assuming an additional later-version grant).
 No separate sound-author notice was found; this is a package-level
