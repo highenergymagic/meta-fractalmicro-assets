@@ -15,7 +15,9 @@ No separate sound-author notice was found; this is a package-level
 interpretation, not a newly discovered asset-specific license statement.
 Original Ogg files and COPYING are installed alongside the generated WAVs.
 
-Conversion uses pinned libvorbis in the build container, not host multimedia
-tools. Inputs must be single-stream, 44.1 kHz stereo; conversion preserves that
-rate and creates metadata-free signed 16-bit little-endian PCM WAVs.
+Conversion uses a commit-pinned Tremor fixed-point decoder built by OE, not
+host multimedia tools. Integer-only decoding avoids the host-dependent PCM
+rounding observed with floating-point libvorbis. Inputs must be single-stream,
+44.1 kHz stereo; conversion preserves that rate and creates metadata-free
+signed 16-bit little-endian PCM WAVs with explicit byte ordering.
 This layer does not enable playback or change the speaker volume ceiling.
