@@ -1,29 +1,39 @@
-# Fractal Microsystems assets
+# OpenH432 asset layer
 
-Reproducibly fetched third-party media for OpenH432. Integration metadata is
-MIT; each asset recipe retains its upstream license and provenance. A separate
-layer is an organizational boundary, not a way to change licensing obligations.
-No media binaries are stored in Git.
+Yocto/OpenEmbedded recipes for third-party media used by OpenH432.
+This layer fetches verified upstream sources and produces reproducible
+runtime assets. Media binaries are not stored in Git.
 
-## Integration
+## Build integration
 
-The [build manifest](https://github.com/highenergymagic/openh432-build/blob/main/kas/h432b.yml)
-pins this layer. Image package selection and service enablement belong to the
-[OS layer](https://github.com/highenergymagic/meta-fractalmicro-openh432/blob/main/docs/system-sounds.md),
-not asset recipes. Use the build repository's pinned Docker workflow.
+| Setting | Value |
+| --- | --- |
+| Yocto series | Wrynose |
+| Layer dependency | OpenEmbedded Core |
+| Build entry point | [openh432-build](https://github.com/highenergymagic/openh432-build) |
 
-## KDE 3 system sounds
+The OpenH432 manifest includes and pins this layer. Follow its build
+workflow rather than invoking host media-conversion tools.
+[meta-fractalmicro-openh432](https://github.com/highenergymagic/meta-fractalmicro-openh432)
+selects the image packages and configures playback services.
 
-The recipe selects KDE_Startup_1.ogg and KDE_Logout_1.ogg from the checksum-pinned
-official kdebase 3.5.10 source archive. Each selected file has its own SHA256 check in the recipe.
-It uses the archive's GPLv2 COPYING as the package-level licensing basis
-(GPL-2.0-only, without assuming an additional later-version grant).
-No separate sound-author notice was found; this is a package-level
-interpretation, not a newly discovered asset-specific license statement.
-Original Ogg files and COPYING are installed alongside the generated WAVs.
+## Assets
 
-Conversion uses a commit-pinned Tremor fixed-point decoder built by OE, not
-host multimedia tools. Integer-only decoding provides host-independent PCM rounding. Inputs must be single-stream,
-44.1 kHz stereo; conversion preserves that rate and creates metadata-free
-signed 16-bit little-endian PCM WAVs with explicit byte ordering.
-This layer does not enable playback or change the speaker volume ceiling.
+The layer provides KDE 3 startup and shutdown sounds, converted from
+checksum-verified Ogg sources to PCM WAV using a pinned integer-only decoder.
+Original source media and the upstream licence notice accompany the
+converted files.
+
+See [system sound assets](docs/system-sounds.md) for source provenance,
+conversion requirements and the package's licensing basis. See the
+[playback configuration](https://github.com/highenergymagic/meta-fractalmicro-openh432/blob/main/docs/system-sounds.md)
+for image selection and service policy.
+
+Importing this layer does not enable playback or set device volume.
+
+## Licence
+
+Integration metadata is MIT-licensed. Third-party assets and conversion
+tools retain their upstream licences; the metadata licence does not apply
+to them. Asset-specific attribution and licensing qualifications are
+documented with each asset recipe.
