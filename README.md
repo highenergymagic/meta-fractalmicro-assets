@@ -5,6 +5,13 @@ MIT; each asset recipe retains its upstream license and provenance. A separate
 layer is an organizational boundary, not a way to change licensing obligations.
 No media binaries are stored in Git.
 
+## Integration
+
+The [build manifest](https://github.com/highenergymagic/openh432-build/blob/main/kas/h432b.yml)
+pins this layer. Image package selection and service enablement belong to the
+[OS layer](https://github.com/highenergymagic/meta-fractalmicro-openh432/blob/main/docs/system-sounds.md),
+not asset recipes. Use the build repository's pinned Docker workflow.
+
 ## KDE 3 system sounds
 
 The recipe selects KDE_Startup_1.ogg and KDE_Logout_1.ogg from the checksum-pinned
@@ -16,8 +23,7 @@ interpretation, not a newly discovered asset-specific license statement.
 Original Ogg files and COPYING are installed alongside the generated WAVs.
 
 Conversion uses a commit-pinned Tremor fixed-point decoder built by OE, not
-host multimedia tools. Integer-only decoding avoids the host-dependent PCM
-rounding observed with floating-point libvorbis. Inputs must be single-stream,
+host multimedia tools. Integer-only decoding provides host-independent PCM rounding. Inputs must be single-stream,
 44.1 kHz stereo; conversion preserves that rate and creates metadata-free
 signed 16-bit little-endian PCM WAVs with explicit byte ordering.
 This layer does not enable playback or change the speaker volume ceiling.
