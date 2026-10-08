@@ -22,6 +22,13 @@ the rate and emits metadata-free, signed 16-bit little-endian PCM WAVs.
 Integer-only decoding and explicit byte ordering keep conversion independent
 of the builder's native architecture.
 
+## Packages
+
+`kde3-sounds-startup` provides the startup WAV and its original Ogg, with a
+dependency on `kde3-sounds-license`. The full `kde3-sounds` package depends on
+both and adds the shutdown files. This permits a small early-boot payload
+without dropping attribution or duplicating the decoder.
+
 ## Runtime integration
 
 The distribution layer owns image package selection and playback services.

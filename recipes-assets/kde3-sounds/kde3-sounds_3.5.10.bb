@@ -26,3 +26,10 @@ do_install() {
     install -m 0644 ${S}/COPYING ${D}${datadir}/licenses/kde3-sounds/
 }
 FILES:${PN} = "${datadir}/openh432/sounds ${datadir}/licenses/kde3-sounds"
+
+# Early boot needs only the startup cue, its original source and licence.
+PACKAGES =+ "${PN}-startup ${PN}-license"
+FILES:${PN}-startup = "${datadir}/openh432/sounds/startup.wav ${datadir}/openh432/sounds/originals/KDE_Startup_1.ogg"
+FILES:${PN}-license = "${datadir}/licenses/kde3-sounds"
+RDEPENDS:${PN}-startup = "${PN}-license"
+RDEPENDS:${PN} += "${PN}-startup ${PN}-license"
