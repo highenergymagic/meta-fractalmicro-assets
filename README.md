@@ -19,17 +19,16 @@ selects the image packages and configures playback services.
 
 ## Assets
 
-The layer provides KDE 3 startup and shutdown sounds, converted from
-checksum-verified Ogg sources to PCM WAV using a pinned integer-only decoder.
-Original source media and the upstream licence notice accompany the
-converted files.
+| Asset family | Packages | Reference |
+| --- | --- | --- |
+| KDE 3 system sounds | Startup and shutdown PCM WAVs, source Oggs and licence notice | [System sounds](docs/system-sounds.md) |
+| RHVoice English speech data | English language model and SLT 16 kHz voice | [Speech assets](docs/speech.md) |
 
-See [system sound assets](docs/system-sounds.md) for source provenance,
-conversion requirements and the package's licensing basis. See the
-[playback configuration](https://github.com/highenergymagic/meta-fractalmicro-openh432/blob/main/docs/system-sounds.md)
-for image selection and service policy.
-
-Importing this layer does not enable playback or set device volume.
+Recipes pin upstream source revisions and checksums. Sound conversion uses a
+pinned integer-only decoder; third-party attribution accompanies the installed
+assets. Importing this layer does not enable playback or set device volume.
+The distribution layer owns [playback policy](https://github.com/highenergymagic/meta-fractalmicro-openh432/blob/main/docs/system-sounds.md)
+and speech backend selection.
 
 ## Licence
 
